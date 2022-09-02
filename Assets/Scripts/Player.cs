@@ -5,14 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     
-        [SerializeField] //Lets designers modify values within the Unity Inspector when variables are private
+        [SerializeField] 
     private float _speed = 3.5f;
 
     // Start is called before the first frame update
     void Start()
     {
            
-        //take the current position = new position (0, 0, 0)
+
         transform.position = new Vector3(0, 0, 0);
 
         
@@ -26,17 +26,35 @@ public class Player : MonoBehaviour
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
 
-        //new vector3(1, 0, 0) | Time.deltaTime = 1second
-        //new vector3(1, 0, 0) * 5 * real time (per second)
-        //above is the same as new vector3(5, 0, 0) * Time.deltaTime
-        //transform.Translate(Vector3.right * 5 * Time.deltaTime);
-
-        //new Vector3([-1 "left" or 1 "right"], 0, 0) * [-1 "left" or 0 "stay still" or "right"] * 3.5f * real time (1 second)
-        //transform.Translate(Vector3.right * horizontalInput * _speed * Time.deltaTime);
-        //transform.Translate(Vector3.up * verticalInput * _speed * Time.deltaTime);
-
-        //transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * _speed * Time.deltaTime);
-
         transform.Translate(direction * _speed * Time.deltaTime);
+
+        //if player position on the y is greatter than 0
+        //than y position = 0
+        //else if position on the y is less than -3.8f
+        //y pos = -3.8f
+
+        if (transform.position.y >= 0)
+        {
+            transform.position = new Vector3(transform.position.x, 0, 0); 
+        }
+        else if (transform.position.y <= -3.8f)
+        {
+            transform.position = new Vector3(transform.position.x, -3.8f, 0);
+        }
+
+        //if player position on the x is greater than 11.3f
+        //than x position = -11.3f 
+        //else if player position on the x is less than -11.33f
+        //than pos = 11.3f
+
+        if (transform.position.x >= 11.2f)
+        {
+            transform.position = new Vector3(-11.2f, transform.position.y, 0);
+        }
+        else if (transform.position.x <= -11.2f)
+        {
+            transform.position = new Vector3(11.2f, transform.position.y, 0); ;
+        }
+
     }
 }
