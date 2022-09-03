@@ -5,8 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     
-        [SerializeField] 
+    [SerializeField] 
     private float _speed = 3.5f;
+
+    [SerializeField]
+    private GameObject _laserPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +26,11 @@ public class Player : MonoBehaviour
     {
         CalculateMovement();
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+        }
+
     }
 
     void CalculateMovement()
@@ -34,20 +42,10 @@ public class Player : MonoBehaviour
 
         transform.Translate(direction * _speed * Time.deltaTime);
 
-        //if player position on the y is greatter than 0
-        //than y position = 0
-        //else if position on the y is less than -3.8f
-        //y pos = -3.8f
-
-        
-
+    
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
 
-        //if player position on the x is greater than 11.3f
-        //than x position = -11.3f 
-        //else if player position on the x is less than -11.33f
-        //than pos = 11.3f
-
+ 
         if (transform.position.x >= 11.2f)
         {
             transform.position = new Vector3(-11.2f, transform.position.y, 0);
