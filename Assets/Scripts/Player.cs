@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private GameObject _laserPrefab;
 
    [SerializeField]
-    private Vector3 laserOffset = new Vector3(0, .8f, 0);
+    private Vector3 laserOffset = new Vector3(0, 1.05f, 0);
 
     [SerializeField]
     private float _fireRate = 0.5f;
