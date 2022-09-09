@@ -7,12 +7,12 @@ public class Player : MonoBehaviour
     
     [SerializeField] 
     private float _speed = 5.0f;
-    [SerializeField]
+    //[SerializeField]
     private float _speedBoost = 10.0f;
 
     [SerializeField]
     private GameObject _laserPrefab;
-    [SerializeField]
+    //[SerializeField]
     private GameObject _tripleShotPrefab;
 
    [SerializeField]

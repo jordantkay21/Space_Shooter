@@ -41,6 +41,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    
     IEnumerator SpawnPowerUproutine()
     {
         while (_stopSpawning == false)
@@ -50,6 +51,7 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
     }
+    
 
     public void OnPlayerDeath()
     {
