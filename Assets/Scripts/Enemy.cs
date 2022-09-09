@@ -8,18 +8,6 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _speed = 4.0f;
 
-    [SerializeField]
-    private GameObject _enemy;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
              
@@ -33,12 +21,9 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //if other is Player
-        //Destroy Us
-
         if (other.tag == "Player")
         {
-            //damage player
+
             Player player = other.transform.GetComponent<Player>();
             
            if (player != null)
@@ -48,10 +33,6 @@ public class Enemy : MonoBehaviour
             
             Destroy(this.gameObject);
         }
-
-        //if other is Laser
-        //Destroy Laser
-        //Destroy Us
 
         if (other.tag == "Laser")
         {
