@@ -7,8 +7,9 @@ public class Powerup : MonoBehaviour
     [SerializeField]
     private float _speed = 3.0f;
 
-    [SerializeField] //0 = Triple Shot | 1 = Speed | 2 = Shields
-    private int _powerupID;
+    [SerializeField]
+    private int _powerupID; // 0=Tripleshot | 1=Speed | 2=Shield
+
 
 
     void Update()

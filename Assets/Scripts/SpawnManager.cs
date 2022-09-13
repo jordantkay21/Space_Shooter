@@ -21,7 +21,7 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnEnemyRoutine());
-        StartCoroutine(SpawnPowerUproutine());
+        StartCoroutine(SpawnPowerUpRoutine());
     }
 
     // Update is called once per frame
@@ -42,12 +42,12 @@ public class SpawnManager : MonoBehaviour
     }
 
     
-    IEnumerator SpawnPowerUproutine()
+    IEnumerator SpawnPowerUpRoutine()
     {
         while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8, 8), 8, 0);
-            Instantiate(_powerups[Random.Range(0, 2)], posToSpawn, Quaternion.identity);
+            Instantiate(_powerups[Random.Range(0, 3)], posToSpawn, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
     }
