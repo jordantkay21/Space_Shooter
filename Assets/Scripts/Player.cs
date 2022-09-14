@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
     private GameObject _shieldVisualizer;
     private SpawnManager _spawnManager;
     private UIManager _uiManager;
+    [SerializeField]
+    private GameObject _leftDamage;
+    [SerializeField]
+    private GameObject _rightDamage;
 
     //Variables that hold a Vector3
    [SerializeField]
@@ -130,6 +134,15 @@ public class Player : MonoBehaviour
         _lives--;
 
         _uiManager.UpdateLives(_lives);
+
+        if(_lives == 2)
+        {
+            _leftDamage.gameObject.SetActive(true);
+        }
+        else if(_lives == 1)
+        {
+            _rightDamage.gameObject.SetActive(true);
+        }
         
         
 
