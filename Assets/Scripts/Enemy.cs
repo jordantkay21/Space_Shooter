@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private Animator _animator;
 
 
+
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Animator is NULL.");
         }
+        
 
     }
 

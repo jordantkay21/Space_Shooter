@@ -27,12 +27,13 @@ public class Player : MonoBehaviour
     private SpawnManager _spawnManager;
     private UIManager _uiManager;
     [SerializeField]
-    private GameObject _leftDamage;
+    private GameObject _leftDamage, _rightDamage;
     [SerializeField]
-    private GameObject _rightDamage;
+    private AudioClip _laserSoundClip;
+    private AudioSource _audioSource;
 
     //Variables that hold a Vector3
-   [SerializeField]
+    [SerializeField]
     private Vector3 laserOffset = new Vector3(0, .8f, 0);
        
    //Bool Variables
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _audioSource = GetComponent<AudioSource>();
 
         if (_spawnManager == null)
         {
@@ -59,6 +61,15 @@ public class Player : MonoBehaviour
         if (_uiManager == null)
         {
             Debug.LogError("The UI Manager is NULL.");
+        }
+        
+        if (_audioSource == null)
+        {
+            Debug.LogError("The Laser Audio on the Player is NULL");
+        }
+        else
+        {
+            _audioSource.clip =_laserSoundClip;
         }
 
         
@@ -119,6 +130,8 @@ public class Player : MonoBehaviour
         {
             Instantiate(_laserPrefab, transform.position + laserOffset, Quaternion.identity);
         }
+
+        _audioSource.Play();
     }
 
     public void Damage()
