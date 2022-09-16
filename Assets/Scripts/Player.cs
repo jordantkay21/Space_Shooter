@@ -8,7 +8,9 @@ public class Player : MonoBehaviour
     [SerializeField] 
     private float _speed = 5.0f;
     [SerializeField]
-    private float _speedBoost = 10.0f;
+    private float _speedBoostPowerup = 10.0f;
+    [SerializeField]
+    private float _thruster = 7.0f;
     [SerializeField]
     private float _fireRate = 0.5f;
     private float _canFire = -1f;
@@ -29,12 +31,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _leftDamage, _rightDamage;
     [SerializeField]
-    private AudioClip _laserSoundClip;
+    private AudioClip _laserSoundClip, _powerUpClip;
     private AudioSource _audioSource;
+    
 
     //Variables that hold a Vector3
     [SerializeField]
-    private Vector3 laserOffset = new Vector3(0, .8f, 0);
+    private Vector3 _laserOffset = new Vector3(0, .8f, 0);
        
    //Bool Variables
     private bool _isTripleShotActive = false;
@@ -52,7 +55,7 @@ public class Player : MonoBehaviour
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
-
+        
         if (_spawnManager == null)
         {
             Debug.LogError("The Spawn Manager is NULL.");
@@ -67,11 +70,6 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("The Laser Audio on the Player is NULL");
         }
-        else
-        {
-            _audioSource.clip =_laserSoundClip;
-        }
-
         
     }
 
@@ -96,13 +94,18 @@ public class Player : MonoBehaviour
 
        if (_isSpeedBoostActive == true)
         {
-            transform.Translate(direction * _speedBoost * Time.deltaTime);
+            transform.Translate(direction * _speedBoostPowerup * Time.deltaTime);
             StartCoroutine(SpeedBoostPowerDownRoutine());
+        }
+       else if (Input.GetKey(KeyCode.LeftShift))
+        {
+            transform.Translate(direction * _thruster * Time.deltaTime);
         }
         else
         {
             transform.Translate(direction * _speed * Time.deltaTime);
         }
+       
 
 
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
@@ -121,6 +124,7 @@ public class Player : MonoBehaviour
     void FireLaser()
     {
         _canFire = Time.time + _fireRate;
+        _audioSource.clip = _laserSoundClip;
 
         if (_isTripleShotActive == true)
         {
@@ -128,7 +132,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Instantiate(_laserPrefab, transform.position + laserOffset, Quaternion.identity);
+            Instantiate(_laserPrefab, transform.position + _laserOffset, Quaternion.identity);
         }
 
         _audioSource.Play();
@@ -139,8 +143,7 @@ public class Player : MonoBehaviour
 
         if(_isShieldActive == true)
         {
-            _isShieldActive = false;
-            _shieldVisualizer.SetActive(false);
+            ShieldDeactivate();
             return;
         }
         
@@ -170,6 +173,7 @@ public class Player : MonoBehaviour
     public void TripleShotActive()
     {
         _isTripleShotActive = true;
+        PowerUpSound();
         StartCoroutine(TripleShotPowerDownRoutine()); 
     }
 
@@ -181,6 +185,7 @@ public class Player : MonoBehaviour
     public void SpeedBoostActive()
     {
         _isSpeedBoostActive = true;
+        PowerUpSound();
 
     }
 
@@ -192,7 +197,20 @@ public class Player : MonoBehaviour
     public void ShieldActive()
     {
         _isShieldActive = true;
+        PowerUpSound();
         _shieldVisualizer.SetActive(true);
+    }
+
+    public void ShieldDeactivate()
+    {
+        _isShieldActive = false;
+        _shieldVisualizer.SetActive(false);
+    }
+
+    private void PowerUpSound()
+    {
+        _audioSource.clip = _powerUpClip;
+        _audioSource.Play();
     }
 
     //Create Method to add 10 to score
