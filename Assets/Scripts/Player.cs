@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     private int _lives = 3;
     [SerializeField]
     private int _score;
+    [SerializeField]
+    private int _ammoCount = 30;
 
     //Variable that hold a GameObject
     [SerializeField]
@@ -132,12 +134,42 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Instantiate(_laserPrefab, transform.position + _laserOffset, Quaternion.identity);
-        }
-
-        _audioSource.Play();
+            if(_ammoCount == 0)
+            {
+                return; 
+            }
+            else
+            {
+                _ammoCount--;
+                Instantiate(_laserPrefab, transform.position + _laserOffset, Quaternion.identity);
+                _audioSource.Play();
+                _uiManager.UpdateAmmoCount(_ammoCount);
+            }        
+        }  
     }
 
+    public void RefillAmmo()
+    {
+        _ammoCount = 30;
+        _uiManager.UpdateAmmoCount(_ammoCount);
+    }
+
+    public void GiveLife()
+    {
+        PowerUpSound();
+        if (_lives == 3)
+        {
+            return;
+        }
+        else
+        {
+            _lives++;
+            _uiManager.UpdateLives(_lives);
+            CheckLives();
+        }
+        
+    }
+    
     public void Damage()
     {
 
@@ -150,17 +182,28 @@ public class Player : MonoBehaviour
         _lives--;
 
         _uiManager.UpdateLives(_lives);
+        CheckLives();
 
-        if(_lives == 2)
+    }
+
+    private void CheckLives()
+    {
+        
+        if (_lives == 3)
+        {
+            _leftDamage.gameObject.SetActive(false);
+            _rightDamage.gameObject.SetActive(false);
+        }
+        else if (_lives == 2)
         {
             _leftDamage.gameObject.SetActive(true);
+            _rightDamage.gameObject.SetActive(false);
         }
-        else if(_lives == 1)
+        else if (_lives == 1)
         {
+            _leftDamage.gameObject.SetActive(true);
             _rightDamage.gameObject.SetActive(true);
         }
-        
-        
 
         if (_lives < 1)
         {
@@ -169,7 +212,6 @@ public class Player : MonoBehaviour
             _uiManager.GameOverSequence();
         }
     }
-
     public void TripleShotActive()
     {
         _isTripleShotActive = true;
@@ -213,11 +255,11 @@ public class Player : MonoBehaviour
         _audioSource.Play();
     }
 
-    //Create Method to add 10 to score
+    
     public void AddScore(int points)
     {
         _score += points;
         _uiManager.UpdateScore(_score);
     }
-    //Communicate with the UI to update the score
+   
 }

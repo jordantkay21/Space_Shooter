@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour
     private Text _gameOverText;
     [SerializeField]
     private Text _restartText;
+    [SerializeField]
+    private Text _ammoCountText;
+
 
     private GameManager _gameManager;
 
@@ -33,6 +36,8 @@ public class UIManager : MonoBehaviour
         }
         
         _scoreText.text = "Score: " + 0;
+        _ammoCountText.text = "Ammo: 30/30";
+        
         _gameOverText.gameObject.SetActive(false);
         _restartText.gameObject.SetActive(false);
     }
@@ -54,6 +59,11 @@ public class UIManager : MonoBehaviour
         _gameManager.GameOver();
         _restartText.gameObject.SetActive(true);
         StartCoroutine(GameOverRoutine());
+    }
+
+    public void UpdateAmmoCount(int currentAmmo)
+    {
+        _ammoCountText.text = "Ammo: " + currentAmmo + "/30";
     }
 
     IEnumerator GameOverRoutine()

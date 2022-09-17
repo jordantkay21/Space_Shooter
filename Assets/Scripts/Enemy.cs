@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     private AudioSource _audioSource;
 
 
+
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
@@ -52,6 +53,7 @@ public class Enemy : MonoBehaviour
             for (int i = 0; i < lasers.Length; i++)
             {
                 lasers[i].AssignEnemyLaser();
+                
             }
         }
 

@@ -17,10 +17,14 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _powerups;
 
+    [SerializeField]
+    private GameObject _refillAmmo;
+
     public void StartSpawning()
     {
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerUpRoutine());
+        StartCoroutine(SpawnRefillAmmoRoutine());
     }
 
     IEnumerator SpawnEnemyRoutine()
@@ -42,8 +46,19 @@ public class SpawnManager : MonoBehaviour
         while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8, 8), 8, 0);
-            Instantiate(_powerups[Random.Range(0, 3)], posToSpawn, Quaternion.identity);
+            Instantiate(_powerups[Random.Range(0, 4)], posToSpawn, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(3, 8));
+        }
+    }
+
+    IEnumerator SpawnRefillAmmoRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        while (_stopSpawning == false)
+        {
+            Vector3 posToSpawn = new Vector3(Random.Range(-8, 8), 8, 0);
+            Instantiate(_refillAmmo, posToSpawn, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(5, 10));
         }
     }
     
