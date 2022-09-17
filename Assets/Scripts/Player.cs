@@ -183,7 +183,6 @@ public class Player : MonoBehaviour
 
         _uiManager.UpdateLives(_lives);
         CheckLives();
-
     }
 
     private void CheckLives()
@@ -261,5 +260,8 @@ public class Player : MonoBehaviour
         _score += points;
         _uiManager.UpdateScore(_score);
     }
-   
+
+
+
+
 }

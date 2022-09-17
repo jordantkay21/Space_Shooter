@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
     private Animator _animator;
     private AudioSource _audioSource;
 
+    private bool _stopFire = false;
+
 
 
     private void Start()
@@ -43,7 +45,12 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         CalculateMovement();
-          if (Time.time > _canFire)
+        FireLaser();
+
+    }
+    void FireLaser()
+    {
+        if (Time.time > _canFire && _stopFire == false)
         {
             _fireRate = Random.Range(3f, 7f);
             _canFire = Time.time + _fireRate;
@@ -53,10 +60,9 @@ public class Enemy : MonoBehaviour
             for (int i = 0; i < lasers.Length; i++)
             {
                 lasers[i].AssignEnemyLaser();
-                
+
             }
         }
-
     }
 
     void CalculateMovement()
@@ -84,6 +90,9 @@ public class Enemy : MonoBehaviour
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0;
             _audioSource.Play();
+            _stopFire = true;
+            Destroy(GetComponent<Collider2D>());
+            Destroy(GetComponent<Rigidbody2D>());
             Destroy(this.gameObject, 2.6f);
         }
 
@@ -99,7 +108,9 @@ public class Enemy : MonoBehaviour
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0;
             _audioSource.Play();
+            _stopFire = true;
             Destroy(GetComponent<Collider2D>());
+            Destroy(GetComponent<Rigidbody2D>());
             Destroy(this.gameObject, 2.6f);
 
             
