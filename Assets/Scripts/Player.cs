@@ -19,11 +19,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _score;
     [SerializeField]
-    private int _ammoCount = 30;
+    private int _laserAmmoCount = 15;
+    [SerializeField]
+    private int _missileAmmoCount = 0;
 
     //Variable that hold a GameObject
     [SerializeField]
     private GameObject _laserPrefab;
+    [SerializeField]
+    private GameObject _missilePrefab;
     [SerializeField]
     private GameObject _tripleShotPrefab;
     [SerializeField]
@@ -82,7 +86,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
         {
-            FireLaser(); ;
+            FireLaser(); 
+        }
+
+        if (Input.GetKeyDown(KeyCode.M) && Time.time > _canFire)
+        {
+            FireMissile();
         }
 
     }
@@ -134,24 +143,51 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if(_ammoCount == 0)
+            if(_laserAmmoCount == 0)
             {
                 return; 
             }
             else
             {
-                _ammoCount--;
+                _laserAmmoCount--;
                 Instantiate(_laserPrefab, transform.position + _laserOffset, Quaternion.identity);
                 _audioSource.Play();
-                _uiManager.UpdateAmmoCount(_ammoCount);
+                _uiManager.UpdateAmmoCount(_laserAmmoCount);
             }        
         }  
     }
 
+    void FireMissile()
+    {
+        if(_missileAmmoCount == 0)
+        {
+            return;
+        }
+        else
+        {
+            _missileAmmoCount--;
+            Instantiate(_missilePrefab, transform.position + _laserOffset, Quaternion.identity);
+            _uiManager.UpdateMissileAmmo(_missileAmmoCount);
+        }
+    }
+
     public void RefillAmmo()
     {
-        _ammoCount = 30;
-        _uiManager.UpdateAmmoCount(_ammoCount);
+        _laserAmmoCount = 15;
+        _uiManager.UpdateAmmoCount(_laserAmmoCount);
+    }
+
+    public void RefillMissile()
+    {
+        if(_missileAmmoCount < 3)
+        {
+            _missileAmmoCount++;
+            _uiManager.UpdateMissileAmmo(_missileAmmoCount);
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void GiveLife()

@@ -18,6 +18,9 @@ public class SpawnManager : MonoBehaviour
     private GameObject[] _powerups;
 
     [SerializeField]
+    private GameObject[] _rarePowerups;
+
+    [SerializeField]
     private GameObject _refillAmmo;
 
     public void StartSpawning()
@@ -25,6 +28,7 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerUpRoutine());
         StartCoroutine(SpawnRefillAmmoRoutine());
+        StartCoroutine(SpawnRarePowerUpRoutine());
     }
 
     IEnumerator SpawnEnemyRoutine()
@@ -46,8 +50,19 @@ public class SpawnManager : MonoBehaviour
         while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8, 8), 8, 0);
-            Instantiate(_powerups[Random.Range(0, 4)], posToSpawn, Quaternion.identity);
+            Instantiate(_powerups[Random.Range(0, 5)], posToSpawn, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(3, 8));
+        }
+    }
+
+    IEnumerator SpawnRarePowerUpRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        while (_stopSpawning == false)
+        {
+            Vector3 posToSpawn = new Vector3(Random.Range(-8, 8), 8, 0);
+            Instantiate(_rarePowerups[0], posToSpawn, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(6, 10));
         }
     }
 

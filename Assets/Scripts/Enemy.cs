@@ -115,6 +115,26 @@ public class Enemy : MonoBehaviour
 
             
         }
+
+        if (other.tag == "Missile")
+        {
+            if (_player != null)
+            {
+                _player.AddScore(10);
+            }
+
+            Destroy(other.gameObject);
+
+            _animator.SetTrigger("OnEnemyDeath");
+            _speed = 0;
+            _audioSource.Play();
+            _stopFire = true;
+            Destroy(GetComponent<Collider2D>());
+            Destroy(GetComponent<Rigidbody2D>());
+            Destroy(this.gameObject, 2.6f);
+
+
+        }
     }
 
 }

@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
     private Text _restartText;
     [SerializeField]
     private Text _ammoCountText;
+    [SerializeField]
+    private Text _missileCountText;
 
 
     private GameManager _gameManager;
@@ -36,7 +38,8 @@ public class UIManager : MonoBehaviour
         }
         
         _scoreText.text = "Score: " + 0;
-        _ammoCountText.text = "Ammo: 30/30";
+        _ammoCountText.text = "Ammo: 15/15";
+        _missileCountText.text = "Missile: 0/3";
         
         _gameOverText.gameObject.SetActive(false);
         _restartText.gameObject.SetActive(false);
@@ -63,7 +66,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateAmmoCount(int currentAmmo)
     {
-        _ammoCountText.text = "Ammo: " + currentAmmo + "/30";
+        _ammoCountText.text = "Ammo: " + currentAmmo + "/15";
     }
 
     IEnumerator GameOverRoutine()
@@ -75,5 +78,10 @@ public class UIManager : MonoBehaviour
             _gameOverText.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    public void UpdateMissileAmmo(int currentMissile)
+    {
+        _missileCountText.text = "Missile: " + currentMissile + "/3";
     }
 }
