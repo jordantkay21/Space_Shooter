@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
     private bool _isShieldActive = false;
     [SerializeField]
     private bool _isThrusterScaleActive = false;
+    private bool _isThrusterScaleReloading = false;
 
  
     // Start is called before the first frame update
@@ -114,6 +115,7 @@ public class Player : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftShift))
         {
+            _isThrusterScaleReloading = true;
             if (_thrusterTimer > 0)
             {
                 transform.Translate(direction * _thruster * Time.deltaTime);
@@ -136,6 +138,12 @@ public class Player : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             _isThrusterScaleActive = false;
+            _isThrusterScaleReloading = false;
+        }
+
+        if (_isThrusterScaleReloading == false)
+        {
+            StartCoroutine(ThrusterScaleUp());
         }
 
         if (transform.position.x >= 11.2f)
@@ -160,6 +168,27 @@ public class Player : MonoBehaviour
         {
             _thrusterTimer = 0;
         }
+    }
+    IEnumerator ThrusterScaleUp()
+    {
+        _isThrusterScaleReloading = true;
+        while (_thrusterTimer < 15 && _isThrusterScaleReloading == true)
+        {
+            yield return new WaitForSeconds(5);
+            _thrusterTimer += 1;
+            _uiManager.UpdateThrusterScale((int)_thrusterTimer);
+        }
+
+        if (_thrusterTimer > 15)
+        {
+            _thrusterTimer = 15;
+        }
+
+        if (_thrusterTimer == 15)
+        {
+            _isThrusterScaleReloading = false;
+        }
+
     }
 
     void FireLaser()
