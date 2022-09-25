@@ -14,6 +14,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Sprite[] _livesSprites; //0=0 lives | 1=1 lives | 2=2 lives | 3=3 lives
     [SerializeField]
+    private Image _thrusterImg;
+    [SerializeField]
+    private Sprite[] _thrusterSprites; //0=empty | 1=1 second left | 2=2 seconds left | 3=3 seconds left | 4=4 seconds left | 5=5 seconds left | 6=6 seconds left | 7=7 seconds left | 8=8 seconds left | 9=9 seconds left | 10=10 seconds left | 11=11 seconds left | 12=12 seconds left | 13=13 seconds left | 14=14 seconds left | 15=Full 
+    [SerializeField]
     private Text _gameOverText;
     [SerializeField]
     private Text _restartText;
@@ -55,6 +59,11 @@ public class UIManager : MonoBehaviour
         //display img sprite
         //give it a new one based on the currentLives index
         _livesImg.sprite = _livesSprites[currentLives];
+    }
+
+    public void UpdateThrusterScale(int currentSecondsLeft)
+    {
+        _thrusterImg.sprite = _thrusterSprites[currentSecondsLeft];
     }
 
     public void GameOverSequence()

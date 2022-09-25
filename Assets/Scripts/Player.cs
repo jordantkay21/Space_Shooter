@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _thruster = 7.0f;
     [SerializeField]
+    private float _thrusterTimer = 15f;
+    [SerializeField]
     private float _fireRate = 0.5f;
     private float _canFire = -1f;
     [SerializeField]
@@ -50,6 +52,8 @@ public class Player : MonoBehaviour
     private bool _isSpeedBoostActive = false;
     [SerializeField]
     private bool _isShieldActive = false;
+    [SerializeField]
+    private bool _isThrusterScaleActive = false;
 
  
     // Start is called before the first frame update
@@ -103,25 +107,37 @@ public class Player : MonoBehaviour
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
 
-       if (_isSpeedBoostActive == true)
+        if (_isSpeedBoostActive == true)
         {
             transform.Translate(direction * _speedBoostPowerup * Time.deltaTime);
             StartCoroutine(SpeedBoostPowerDownRoutine());
         }
-       else if (Input.GetKey(KeyCode.LeftShift))
+        else if (Input.GetKey(KeyCode.LeftShift))
         {
-            transform.Translate(direction * _thruster * Time.deltaTime);
+            if (_thrusterTimer > 0)
+            {
+                transform.Translate(direction * _thruster * Time.deltaTime);
+                if (_isThrusterScaleActive == false)
+                {
+                    StartCoroutine(ThrusterScaleDown());
+                }
+            }
+            else
+            {
+                transform.Translate(direction * _speed * Time.deltaTime);
+            }
         }
         else
         {
             transform.Translate(direction * _speed * Time.deltaTime);
         }
-       
-
-
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
 
- 
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _isThrusterScaleActive = false;
+        }
+
         if (transform.position.x >= 11.2f)
         {
             transform.position = new Vector3(-11.2f, transform.position.y, 0);
@@ -129,6 +145,20 @@ public class Player : MonoBehaviour
         else if (transform.position.x <= -11.2f)
         {
             transform.position = new Vector3(11.2f, transform.position.y, 0); ;
+        }
+    }
+    IEnumerator ThrusterScaleDown()
+    {
+        _isThrusterScaleActive = true;
+        while (_thrusterTimer > 0 && _isThrusterScaleActive == true)
+        {
+            yield return new WaitForEndOfFrame();
+            _thrusterTimer -= Time.deltaTime;
+            _uiManager.UpdateThrusterScale((int)_thrusterTimer);
+        } 
+        if(_thrusterTimer < 0)
+        {
+            _thrusterTimer = 0;
         }
     }
 
@@ -296,6 +326,8 @@ public class Player : MonoBehaviour
         _score += points;
         _uiManager.UpdateScore(_score);
     }
+
+
 
 
 
