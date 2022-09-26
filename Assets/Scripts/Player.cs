@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
     [SerializeField]
+    private int _shieldLives = 0;
+    [SerializeField]
     private int _score;
     [SerializeField]
     private int _laserAmmoCount = 15;
@@ -41,6 +43,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioClip _laserSoundClip, _powerUpClip;
     private AudioSource _audioSource;
+    private CameraShake _camShake;
+
     
 
     //Variables that hold a Vector3
@@ -66,6 +70,7 @@ public class Player : MonoBehaviour
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
+        _camShake = GameObject.Find("Main_Camera").GetComponent<CameraShake>();
         
         if (_spawnManager == null)
         {
@@ -80,6 +85,11 @@ public class Player : MonoBehaviour
         if (_audioSource == null)
         {
             Debug.LogError("The Laser Audio on the Player is NULL");
+        }
+
+        if (_camShake == null)
+        {
+            Debug.LogError("The Camera Script on the Player is NULL");
         }
         
     }
@@ -232,12 +242,14 @@ public class Player : MonoBehaviour
 
     public void RefillAmmo()
     {
+        PowerUpSound();
         _laserAmmoCount = 15;
         _uiManager.UpdateAmmoCount(_laserAmmoCount);
     }
 
     public void RefillMissile()
     {
+        PowerUpSound();
         if(_missileAmmoCount < 3)
         {
             _missileAmmoCount++;
@@ -270,11 +282,29 @@ public class Player : MonoBehaviour
 
         if(_isShieldActive == true)
         {
-            ShieldDeactivate();
-            return;
+            if(_shieldLives == 3)
+            {
+                _shieldLives--;
+                _uiManager.UpdateShieldLives(_shieldLives);
+                return;
+            }
+            else if(_shieldLives == 2)
+            {
+                _shieldLives--;
+                _uiManager.UpdateShieldLives(_shieldLives);
+                return;
+            }
+            else if(_shieldLives == 1)
+            {
+                _shieldLives--;
+                _uiManager.UpdateShieldLives(_shieldLives);
+                ShieldDeactivate();
+                return;
+            }
         }
         
         _lives--;
+        _camShake.CameraShakeStart();
 
         _uiManager.UpdateLives(_lives);
         CheckLives();
@@ -333,6 +363,8 @@ public class Player : MonoBehaviour
     public void ShieldActive()
     {
         _isShieldActive = true;
+        _shieldLives = 3;
+        _uiManager.UpdateShieldLives(_shieldLives);
         PowerUpSound();
         _shieldVisualizer.SetActive(true);
     }
