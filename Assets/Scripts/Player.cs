@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     private int _missileAmmoCount = 0;
 
     //Variable that hold a GameObject
-    [SerializeField]
+    [SerializeField] 
     private GameObject _laserPrefab;
     [SerializeField]
     private GameObject _missilePrefab;
@@ -204,6 +204,13 @@ public class Player : MonoBehaviour
     public void EmptyThrusters()
     {
         StartCoroutine(EmptyThrusterRoutine());
+    }
+
+    public void EmptyThrustersPowerdown()
+    {
+        _camShake.CameraShakeStart();
+        _thrusterTimer = 0;
+        _uiManager.UpdateThrusterScale((int)_thrusterTimer);
     }
 
     public IEnumerator EmptyThrusterRoutine()

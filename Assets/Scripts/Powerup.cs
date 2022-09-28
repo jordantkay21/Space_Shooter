@@ -62,6 +62,9 @@ public class Powerup : MonoBehaviour
                     case 5:
                         player.RefillMissile();
                         break;
+                    case 6:
+                        player.EmptyThrustersPowerdown();
+                        break;
                 }
             }                     
             Destroy(this.gameObject);
