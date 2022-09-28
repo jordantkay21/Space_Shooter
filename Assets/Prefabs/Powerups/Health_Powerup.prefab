@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5088781075005402568}
   - component: {fileID: -7167839657634652123}
   - component: {fileID: -466303500118275030}
-  - component: {fileID: 19133177}
   - component: {fileID: 19133175}
+  - component: {fileID: 19133177}
   m_Layer: 0
   m_Name: Health_Powerup
   m_TagString: Untagged
@@ -228,6 +228,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &19133175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4959151107416442570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7b1d87d5fa38004487780fc49e0a9d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  _powerupID: 3
 --- !u!50 &19133177
 Rigidbody2D:
   serializedVersion: 4
@@ -249,17 +263,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &19133175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4959151107416442570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7b1d87d5fa38004487780fc49e0a9d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 3
-  _powerupID: 3

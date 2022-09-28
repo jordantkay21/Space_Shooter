@@ -11,8 +11,16 @@ public class Powerup : MonoBehaviour
     private int _powerupID; // 0=Tripleshot | 1=Speed | 2=Shield
 
 
+    private Transform _playerTransform;
+    private Player _playerScript;
 
 
+
+    private void Start()
+    {
+        _playerTransform = GameObject.Find("Player").GetComponent <Transform> ();
+        _playerScript = GameObject.Find("Player").GetComponent<Player>();
+    }
 
     void Update()
     {
@@ -22,6 +30,8 @@ public class Powerup : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        CollectPowerups();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -56,5 +66,29 @@ public class Powerup : MonoBehaviour
             }                     
             Destroy(this.gameObject);
         }
+    }
+
+    public void MoveToPlayer()
+    {
+        _speed = 10.0f;
+        float step = _speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, _playerTransform.position, step);
+    }
+
+    private void CollectPowerups()
+    {
+        if (Input.GetKey(KeyCode.C))
+        {
+            if (_playerScript.AreThrustersFull() == true)
+            {
+                _playerScript.EmptyThrusters();
+                MoveToPlayer();
+            }
+            else
+            {
+                return;
+            }
+        }
+
     }
 }

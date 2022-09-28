@@ -643,12 +643,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 333056767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31d1b41b82e3b1343a87348c40e4af66, type: 3}
+  m_Script: {fileID: 11500000, guid: be80b51cae4a07e45a5b568124c07da2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraTransform: {fileID: 333056770}
   shakeFrequency: 0.5
-  _originalPosOfCam: {x: 0, y: 0, z: 0}
 --- !u!1 &369459912
 GameObject:
   m_ObjectHideFlags: 0

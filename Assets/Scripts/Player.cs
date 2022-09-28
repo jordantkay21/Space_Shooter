@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(ThrusterScaleUp());
            
 
         transform.position = new Vector3(0, 0, 0);
@@ -186,12 +187,11 @@ public class Player : MonoBehaviour
         {
             yield return new WaitForSeconds(5);
             _thrusterTimer += 1;
+            if (_thrusterTimer > 15)
+            {
+                _thrusterTimer = 15;
+            }
             _uiManager.UpdateThrusterScale((int)_thrusterTimer);
-        }
-
-        if (_thrusterTimer > 15)
-        {
-            _thrusterTimer = 15;
         }
 
         if (_thrusterTimer == 15)
@@ -199,6 +199,33 @@ public class Player : MonoBehaviour
             _isThrusterScaleReloading = false;
         }
 
+    }
+
+    public void EmptyThrusters()
+    {
+        StartCoroutine(EmptyThrusterRoutine());
+    }
+
+    public IEnumerator EmptyThrusterRoutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        if (AreThrustersFull() == true)
+        {
+            _thrusterTimer = 0;
+            _uiManager.UpdateThrusterScale((int)_thrusterTimer);
+        }
+    }
+
+    public bool AreThrustersFull()
+    {
+        if(_thrusterTimer == 15)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     void FireLaser()
