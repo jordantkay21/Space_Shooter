@@ -4,7 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
-{   //Display Enemy Kill Count
+{
+    //Display Wave Level
+    private int _waveLevel;
+    
+    //Display Enemy Kill Count
     [SerializeField]
     private int _enemiesKilled;
     [SerializeField]
@@ -36,6 +40,8 @@ public class UIManager : MonoBehaviour
     private Text _missileCountText;
     [SerializeField]
     private Text _killCountText;
+    [SerializeField]
+    private Text _waveLevelText;
 
     //SHIELD UI
     [SerializeField]
@@ -69,8 +75,15 @@ public class UIManager : MonoBehaviour
     public void Update()
     {
         UpdateKillCount();
+        StartCoroutine(CheckEnemiesKilledRoutine());
     }
 
+ 
+    IEnumerator CheckEnemiesKilledRoutine()
+    {
+        yield return new WaitForEndOfFrame();
+        CheckEnemiesKilled();
+    }
     public void UpdateScore(int playerScore)
     {
         _scoreText.text = "Score: " + playerScore;
@@ -135,4 +148,13 @@ public class UIManager : MonoBehaviour
     {
         _killCountText.text = "Enemy: " + _enemiesKilled + "/" + _waveAmmount;
     }
+
+    private void CheckEnemiesKilled()
+    {
+        if (_enemiesKilled == _waveAmmount)
+        {
+            _gameManager.LoadNextScene();
+        }
+    }
+
 }
