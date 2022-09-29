@@ -4,7 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
-{
+{   //Display Enemy Kill Count
+    [SerializeField]
+    private int _enemiesKilled;
+    [SerializeField]
+    private int _waveAmmount;
 
 
     //LIVES UI
@@ -30,6 +34,8 @@ public class UIManager : MonoBehaviour
     private Text _ammoCountText;
     [SerializeField]
     private Text _missileCountText;
+    [SerializeField]
+    private Text _killCountText;
 
     //SHIELD UI
     [SerializeField]
@@ -58,6 +64,11 @@ public class UIManager : MonoBehaviour
         
         _gameOverText.gameObject.SetActive(false);
         _restartText.gameObject.SetActive(false);
+    }
+
+    public void Update()
+    {
+        UpdateKillCount();
     }
 
     public void UpdateScore(int playerScore)
@@ -108,5 +119,20 @@ public class UIManager : MonoBehaviour
     public void UpdateShieldLives(int currentLives)
     {
         _shieldImg.sprite = _shieldSprites[currentLives];
+    }
+
+    public void UpdateEnemiesKilled(int currentKilles)
+    {
+        _enemiesKilled = currentKilles;
+    }
+
+    public void UpdateWaveAmmount(int currentWaveAmmount)
+    {
+        _waveAmmount = currentWaveAmmount;
+    }
+
+    private void UpdateKillCount()
+    {
+        _killCountText.text = "Enemy: " + _enemiesKilled + "/" + _waveAmmount;
     }
 }

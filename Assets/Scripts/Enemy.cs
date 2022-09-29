@@ -101,6 +101,7 @@ public class Enemy : MonoBehaviour
             if (_player != null)
             {
                 _player.AddScore(10);
+                _player.UpdateKillCount(1);
             }
             
             Destroy(other.gameObject);

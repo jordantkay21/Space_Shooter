@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
     private int _laserAmmoCount = 15;
     [SerializeField]
     private int _missileAmmoCount = 0;
+    [SerializeField]
+    private int _enemiesKilled;
+    [SerializeField]
+    private int _waveAmmount;
 
     //Variable that hold a GameObject
     [SerializeField] 
@@ -422,6 +426,18 @@ public class Player : MonoBehaviour
         _uiManager.UpdateScore(_score);
     }
 
+
+    public void UpdateKillCount(int currentKill)
+    {
+        _enemiesKilled = _enemiesKilled + currentKill;
+        _uiManager.UpdateEnemiesKilled(_enemiesKilled);
+    }
+
+    public void UpdateWaveAmmount(int currentWaveAmmount)
+    {
+        _waveAmmount = currentWaveAmmount;
+        _uiManager.UpdateWaveAmmount(_waveAmmount);
+    }
 
 
 
