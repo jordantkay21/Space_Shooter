@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //Variables that hold a value
+    [Header("Holds a Value")]
     [SerializeField] 
     private float _speed = 5.0f;
     [SerializeField]
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _waveAmmount;
 
-    //Variable that hold a GameObject
+    [Header("Holds a GameObject")]
     [SerializeField] 
     private GameObject _laserPrefab;
     [SerializeField]
@@ -51,11 +51,10 @@ public class Player : MonoBehaviour
 
     
 
-    //Variables that hold a Vector3
-    [SerializeField]
+    [Header("Holds a Vector3")]
     private Vector3 _laserOffset = new Vector3(0, .8f, 0);
        
-   //Bool Variables
+    [Header("Holds a bool value")]
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
     [SerializeField]

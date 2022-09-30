@@ -2081,7 +2081,6 @@ MonoBehaviour:
   _rightDamage: {fileID: 580489227}
   _laserSoundClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _powerUpClip: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
-  _laserOffset: {x: 0, y: 0.8, z: 0}
   _isShieldActive: 0
   _isThrusterScaleActive: 0
 --- !u!212 &1882633412
