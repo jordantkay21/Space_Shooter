@@ -57,7 +57,7 @@ public class Powerup : MonoBehaviour
                         player.GiveLife();
                         break;
                     case 4:
-                        player.RefillAmmo();
+                        player.AddThreeToAmmo();
                         break;
                     case 5:
                         player.RefillMissile();

@@ -277,10 +277,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void RefillAmmo()
+    public void AddThreeToAmmo()
     {
         PowerUpSound();
-        _laserAmmoCount = 15;
+        _laserAmmoCount += 3;
         _uiManager.UpdateAmmoCount(_laserAmmoCount);
     }
 

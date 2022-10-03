@@ -4,30 +4,70 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    [SerializeField]
+    private int _currentWave;
 
+    [Header("Enemies to Spawn")]
     [SerializeField]
     private GameObject _enemyContainer;
-    
     [SerializeField]
     private GameObject _enemyPrefab;
+    [SerializeField]
+    private GameObject _tankPrefab;
+
+    [Header("Collectables to Spawn")]
+    [SerializeField]
+    private GameObject[] _frequentPowerups;
+    [SerializeField]
+    private GameObject[] _regularPowerups;
+    [SerializeField]
+    private GameObject[] _rarePowerups;
+    [SerializeField]
+    private GameObject[] _powerdowns;
+
+    private GameManager _gameManager;
 
     [SerializeField]
     private bool _stopSpawning = false;
 
-    [SerializeField]
-    private GameObject[] _frequentPowerups;
+    private void Start()
+    {
+        _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
 
-    [SerializeField]
-    private GameObject[] _regularPowerups;
-
-    [SerializeField]
-    private GameObject[] _rarePowerups;
-
-    [SerializeField]
-    private GameObject[] _powerdowns;
-
-
+        if (_gameManager == null)
+        {
+            Debug.LogError("Game_Manager is NULL.");
+        }
+    }
     public void StartSpawning()
+    {
+        _currentWave = _gameManager.CheckCurrentSceneIndex();
+
+        switch (_currentWave)
+        {
+            case 0: //main menu
+                return;
+            case 1:
+                Wave1Spawn();
+                break;
+            case 2:
+                Wave2Spawn();
+                break;
+            case 3:
+                Wave3Spawn();
+                break;
+            case 4:
+                Wave4Spawn();
+                break;
+            case 5:
+                Wave5Spawn();
+                break;
+
+        }
+    }
+
+
+    private void Wave1Spawn()
     {
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnFrequentPowerUpRoutine());
@@ -36,15 +76,47 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnPowerDownRoutine());
     }
 
+    private void Wave2Spawn()
+    {
+        Wave1Spawn();
+    }
+
+    private void Wave3Spawn()
+    {
+        Wave2Spawn();
+        StartCoroutine(SpawnTankRoutine());
+    }
+
+    private void Wave4Spawn()
+    {
+        Wave3Spawn();
+    }
+
+    private void Wave5Spawn()
+    {
+        //Boss Wave
+    }
     IEnumerator SpawnEnemyRoutine()
     {
         yield return new WaitForSeconds(3.0f);
-        while(_stopSpawning == false)
+        while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8, 8), 8, 0);
             GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;
             yield return new WaitForSeconds(5.0f);
+        }
+    }
+
+    IEnumerator SpawnTankRoutine()
+    {
+        yield return new WaitForSeconds(Random.Range(3.0f, 12.0f));
+        while (_stopSpawning == false)
+        {
+            Vector3 posToSpawn = new Vector3(-10, Random.Range(6, 3), 0);
+            GameObject newEnemy = Instantiate(_tankPrefab, posToSpawn, Quaternion.identity);
+            newEnemy.transform.parent = _enemyContainer.transform;
+            yield return new WaitForSeconds(Random.Range(5.0f, 10.0f));
         }
     }
 
