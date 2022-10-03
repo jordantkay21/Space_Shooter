@@ -14,6 +14,8 @@ public class SpawnManager : MonoBehaviour
     private GameObject _enemyPrefab;
     [SerializeField]
     private GameObject _tankPrefab;
+    [SerializeField]
+    private GameObject _brutePrefab;
 
     [Header("Collectables to Spawn")]
     [SerializeField]
@@ -84,6 +86,7 @@ public class SpawnManager : MonoBehaviour
     private void Wave3Spawn()
     {
         Wave2Spawn();
+        StartCoroutine(SpawnBruteRoutine());
         StartCoroutine(SpawnPowerDownRoutine());
     }
 
@@ -115,6 +118,18 @@ public class SpawnManager : MonoBehaviour
         {
             Vector3 posToSpawn = new Vector3(-10, Random.Range(6, 3), 0);
             GameObject newEnemy = Instantiate(_tankPrefab, posToSpawn, Quaternion.identity);
+            newEnemy.transform.parent = _enemyContainer.transform;
+            yield return new WaitForSeconds(Random.Range(5.0f, 10.0f));
+        }
+    }
+
+    IEnumerator SpawnBruteRoutine()
+    {
+        yield return new WaitForSeconds(Random.Range(3.0f, 12.0f));
+        while (_stopSpawning == false)
+        {
+            Vector3 posToSpawn = new Vector3(Random.Range(-8, 8), 8, 0);
+            GameObject newEnemy = Instantiate(_brutePrefab, posToSpawn, Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;
             yield return new WaitForSeconds(Random.Range(5.0f, 10.0f));
         }
