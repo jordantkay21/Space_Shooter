@@ -2074,21 +2074,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc5dac2df4c224dbee3d05971aad2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentWave: 0
   _enemyContainer: {fileID: 932461383}
   _enemyPrefab: {fileID: 482657747536779103, guid: 901648634dd9e0b4f93dfceb6d5f45ed,
     type: 3}
-  _stopSpawning: 0
+  _tankPrefab: {fileID: 8548925013996137686, guid: 5a9482d6d0edb364a82ab214c41bfdc2,
+    type: 3}
   _frequentPowerups:
-  - {fileID: 1421154579356897521, guid: 6e6e9a93e9aa1f44aa18a14834f26098, type: 3}
+  - {fileID: 5820515810436792892, guid: df45dbd6c4f572d4ba8ef6abd024147e, type: 3}
   _regularPowerups:
   - {fileID: 7891624076070467504, guid: 5388bf1bd4bb8bc42a970bc373066b7f, type: 3}
   - {fileID: 4472473328040284996, guid: 777cd91fe407ecb41b250d5b3ed9c070, type: 3}
   - {fileID: 3133165783062098413, guid: fde7beb66db33734fb66b4ad07df4d4a, type: 3}
   _rarePowerups:
-  - {fileID: 8322309845884702990, guid: d07a3f9ee9986f345aef6ba087deda24, type: 3}
   - {fileID: 4959151107416442570, guid: 8b5902096d2bd034bb2e36ae37b34ec3, type: 3}
-  _powerdowns:
-  - {fileID: 2931781686224533078, guid: 65c8ee7d4b98a28429b5daccd2f69549, type: 3}
+  _powerdowns: []
+  _stopSpawning: 0
 --- !u!4 &1794650277
 Transform:
   m_ObjectHideFlags: 0
@@ -2145,7 +2146,7 @@ MonoBehaviour:
   _lives: 3
   _shieldLives: 0
   _score: 0
-  _laserAmmoCount: 30
+  _laserAmmoCount: 15
   _missileAmmoCount: 0
   _enemiesKilled: 0
   _waveAmmount: 0
@@ -2484,81 +2485,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2026320051
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2433853222203064426, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy_Sniper
-      objectReference: {fileID: 0}
-    - target: {fileID: 3214267517940909216, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: _enemySniperLaserPrefab
-      value: 
-      objectReference: {fileID: 1567705272222926072, guid: d99db6698afff5746b8bcb0aa229439e,
-        type: 3}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6321ef17db32d314f80f8b876da26ed6, type: 3}
 --- !u!1001 &5601371916101653966
 PrefabInstance:
   m_ObjectHideFlags: 0

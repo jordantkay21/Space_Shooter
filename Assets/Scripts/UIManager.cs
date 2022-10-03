@@ -84,6 +84,11 @@ public class UIManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         CheckEnemiesKilled();
     }
+
+    public void TurnOffWaveText()
+    {
+        _waveLevelText.gameObject.SetActive(false);
+    }
     public void UpdateScore(int playerScore)
     {
         _scoreText.text = "Score: " + playerScore;

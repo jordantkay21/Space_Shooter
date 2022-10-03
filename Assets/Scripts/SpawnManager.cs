@@ -71,20 +71,20 @@ public class SpawnManager : MonoBehaviour
     {
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnFrequentPowerUpRoutine());
-        StartCoroutine(SpawnRegularPowerUpRoutine());
-        StartCoroutine(SpawnRarePowerUpRoutine());
-        StartCoroutine(SpawnPowerDownRoutine());
     }
 
     private void Wave2Spawn()
     {
-        Wave1Spawn();
+        Wave1Spawn();        
+        StartCoroutine(SpawnTankRoutine());        
+        StartCoroutine(SpawnRegularPowerUpRoutine());
+        StartCoroutine(SpawnRarePowerUpRoutine());
     }
 
     private void Wave3Spawn()
     {
         Wave2Spawn();
-        StartCoroutine(SpawnTankRoutine());
+        StartCoroutine(SpawnPowerDownRoutine());
     }
 
     private void Wave4Spawn()
