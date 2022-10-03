@@ -72,6 +72,11 @@ public class Powerup : MonoBehaviour
             }                     
             Destroy(this.gameObject);
         }
+
+        if (other.tag == "Sniper_Laser")
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void MoveToPlayer()

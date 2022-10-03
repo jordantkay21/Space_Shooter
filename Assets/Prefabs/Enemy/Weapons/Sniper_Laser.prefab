@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8443665605311961524}
   m_Layer: 0
   m_Name: Sniper_Laser
-  m_TagString: Enemy_Laser
+  m_TagString: Sniper_Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

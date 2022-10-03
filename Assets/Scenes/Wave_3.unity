@@ -665,7 +665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &369459913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -976,7 +976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &862208953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2078,16 +2078,18 @@ MonoBehaviour:
   _enemyContainer: {fileID: 932461383}
   _enemyPrefab: {fileID: 482657747536779103, guid: 901648634dd9e0b4f93dfceb6d5f45ed,
     type: 3}
-  _tankPrefab: {fileID: 0}
-  _brutePrefab: {fileID: 0}
+  _tankPrefab: {fileID: 8548925013996137686, guid: 5a9482d6d0edb364a82ab214c41bfdc2,
+    type: 3}
+  _brutePrefab: {fileID: 7373824007976255583, guid: 84c3356f275f93741adc81750fe69905,
+    type: 3}
   _frequentPowerups:
-  - {fileID: 1421154579356897521, guid: 6e6e9a93e9aa1f44aa18a14834f26098, type: 3}
+  - {fileID: 5820515810436792892, guid: df45dbd6c4f572d4ba8ef6abd024147e, type: 3}
   _regularPowerups:
   - {fileID: 7891624076070467504, guid: 5388bf1bd4bb8bc42a970bc373066b7f, type: 3}
   - {fileID: 4472473328040284996, guid: 777cd91fe407ecb41b250d5b3ed9c070, type: 3}
   - {fileID: 3133165783062098413, guid: fde7beb66db33734fb66b4ad07df4d4a, type: 3}
+  - {fileID: 4713905772035196240, guid: 9463f152c041dda4a8fd95cc525a73e6, type: 3}
   _rarePowerups:
-  - {fileID: 8322309845884702990, guid: d07a3f9ee9986f345aef6ba087deda24, type: 3}
   - {fileID: 4959151107416442570, guid: 8b5902096d2bd034bb2e36ae37b34ec3, type: 3}
   _powerdowns:
   - {fileID: 2931781686224533078, guid: 65c8ee7d4b98a28429b5daccd2f69549, type: 3}
@@ -2149,7 +2151,7 @@ MonoBehaviour:
   _lives: 3
   _shieldLives: 0
   _score: 0
-  _laserAmmoCount: 30
+  _laserAmmoCount: 15
   _missileAmmoCount: 0
   _enemiesKilled: 0
   _waveAmmount: 0
@@ -2488,75 +2490,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &5013782597466086477
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2230076956975856180, guid: 84c3356f275f93741adc81750fe69905,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230076956975856180, guid: 84c3356f275f93741adc81750fe69905,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230076956975856180, guid: 84c3356f275f93741adc81750fe69905,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230076956975856180, guid: 84c3356f275f93741adc81750fe69905,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230076956975856180, guid: 84c3356f275f93741adc81750fe69905,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230076956975856180, guid: 84c3356f275f93741adc81750fe69905,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230076956975856180, guid: 84c3356f275f93741adc81750fe69905,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230076956975856180, guid: 84c3356f275f93741adc81750fe69905,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230076956975856180, guid: 84c3356f275f93741adc81750fe69905,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230076956975856180, guid: 84c3356f275f93741adc81750fe69905,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230076956975856180, guid: 84c3356f275f93741adc81750fe69905,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7373824007976255583, guid: 84c3356f275f93741adc81750fe69905,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy_Brute
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 84c3356f275f93741adc81750fe69905, type: 3}
 --- !u!1001 &5601371916101653966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2568,6 +2501,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386388005060288581, guid: 7f41176d9c2d74943ab1b3f9033dbbd6,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2721623367960353343, guid: 7f41176d9c2d74943ab1b3f9033dbbd6,
         type: 3}
@@ -2626,18 +2564,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5613570652998898412, guid: 7f41176d9c2d74943ab1b3f9033dbbd6,
         type: 3}
-      propertyPath: _explosionPrefab
-      value: 
-      objectReference: {fileID: 405418557801426426, guid: e0b6525cbe2ef004faff0cb945c53ff5,
+      propertyPath: _rotateSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117280794024814388, guid: 7f41176d9c2d74943ab1b3f9033dbbd6,
         type: 3}
-    - target: {fileID: 5613570652998898412, guid: 7f41176d9c2d74943ab1b3f9033dbbd6,
-        type: 3}
-      propertyPath: _explosionSoundClip
-      value: 
-      objectReference: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
-    - target: {fileID: 9018152992757408885, guid: 7f41176d9c2d74943ab1b3f9033dbbd6,
-        type: 3}
-      propertyPath: m_PlayOnAwake
+      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -92,7 +92,12 @@ public class EnemySniper : MonoBehaviour
 
     }
 
-
+    public void ShootPowerup()
+    {
+        GameObject enemySniperLaser = Instantiate(_enemySniperLaserPrefab, transform.position + _laserOffset, Quaternion.identity);
+        Laser laser = enemySniperLaser.GetComponent<Laser>();
+        laser.AssignEnemyLaser();
+    }
     void FireLaser()
     {
         if (_atLocation == true && _hasFired == false)

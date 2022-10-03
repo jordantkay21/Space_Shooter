@@ -9,6 +9,8 @@ TagManager:
   - Enemy_Laser
   - Missile
   - Behind_Laser
+  - Enemy_Sniper
+  - Sniper_Laser
   layers:
   - Default
   - TransparentFX
