@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private float _thrusterTimer = 15f;
     [SerializeField]
     private float _fireRate = 0.5f;
+    [SerializeField]
     private float _canFire = -1f;
     [SerializeField]
     private int _lives = 3;
@@ -62,6 +63,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _isThrusterScaleActive = false;
     private bool _isThrusterScaleReloading = false;
+    private bool _isRapidFireActive = false;
 
  
     // Start is called before the first frame update
@@ -247,6 +249,12 @@ public class Player : MonoBehaviour
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
         }
+        else if(_isRapidFireActive == true)
+        {
+            _fireRate = .15f;
+            Instantiate(_laserPrefab, transform.position + _laserOffset, Quaternion.identity);
+            _audioSource.Play();
+        }
         else
         {
             if(_laserAmmoCount == 0)
@@ -255,12 +263,39 @@ public class Player : MonoBehaviour
             }
             else
             {
+                _fireRate = .3f;
                 _laserAmmoCount--;
                 Instantiate(_laserPrefab, transform.position + _laserOffset, Quaternion.identity);
                 _audioSource.Play();
                 _uiManager.UpdateAmmoCount(_laserAmmoCount);
             }        
         }  
+    }
+
+    public void RapidFireActivate()
+    {
+        _isRapidFireActive = true;
+        PowerUpSound();
+        StartCoroutine(RapidFirePowerDown());
+    }
+
+    IEnumerator RapidFirePowerDown()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isRapidFireActive = false;
+    }
+
+    public void TripleShotActive()
+    {
+        _isTripleShotActive = true;
+        PowerUpSound();
+        StartCoroutine(TripleShotPowerDownRoutine());
+    }
+
+    IEnumerator TripleShotPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isTripleShotActive = false;
     }
 
     void FireMissile()
@@ -373,18 +408,9 @@ public class Player : MonoBehaviour
             _uiManager.GameOverSequence();
         }
     }
-    public void TripleShotActive()
-    {
-        _isTripleShotActive = true;
-        PowerUpSound();
-        StartCoroutine(TripleShotPowerDownRoutine()); 
-    }
 
-    IEnumerator TripleShotPowerDownRoutine()
-    {
-        yield return new WaitForSeconds(5.0f);
-        _isTripleShotActive = false;
-    }
+
+
     public void SpeedBoostActive()
     {
         _isSpeedBoostActive = true;

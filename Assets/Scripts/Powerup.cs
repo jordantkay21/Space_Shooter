@@ -8,7 +8,7 @@ public class Powerup : MonoBehaviour
     private float _speed = 3.0f;
 
     [SerializeField]
-    private int _powerupID; // 0=Tripleshot | 1=Speed | 2=Shield
+    private int _powerupID; // 0=Tripleshot | 1=Speed | 2=Shield |3=+3 Ammo | 4=Health | 5=Missile | 6=Drain | 7=Rapid Fire 
 
 
     private Transform _playerTransform;
@@ -54,16 +54,19 @@ public class Powerup : MonoBehaviour
                         player.ShieldActive();                   
                         break;
                     case 3:
-                        player.GiveLife();
+                        player.AddThreeToAmmo();
                         break;
                     case 4:
-                        player.AddThreeToAmmo();
+                        player.GiveLife();
                         break;
                     case 5:
                         player.RefillMissile();
                         break;
                     case 6:
                         player.EmptyThrustersPowerdown();
+                        break;
+                    case 7:
+                        player.RapidFireActivate();
                         break;
                 }
             }                     
