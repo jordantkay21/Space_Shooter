@@ -2082,7 +2082,7 @@ MonoBehaviour:
     type: 3}
   _brutePrefab: {fileID: 7373824007976255583, guid: 84c3356f275f93741adc81750fe69905,
     type: 3}
-  _sniperPrefab: {fileID: 1567705272222926072, guid: d99db6698afff5746b8bcb0aa229439e,
+  _sniperPrefab: {fileID: 2433853222203064426, guid: 6321ef17db32d314f80f8b876da26ed6,
     type: 3}
   _frequentPowerups:
   - {fileID: 5820515810436792892, guid: df45dbd6c4f572d4ba8ef6abd024147e, type: 3}
