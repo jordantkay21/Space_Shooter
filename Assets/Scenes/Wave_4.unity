@@ -2074,12 +2074,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc5dac2df4c224dbee3d05971aad2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentWave: 0
   _enemyContainer: {fileID: 932461383}
   _enemyPrefab: {fileID: 482657747536779103, guid: 901648634dd9e0b4f93dfceb6d5f45ed,
     type: 3}
-  _stopSpawning: 0
+  _tankPrefab: {fileID: 8548925013996137686, guid: 5a9482d6d0edb364a82ab214c41bfdc2,
+    type: 3}
+  _brutePrefab: {fileID: 7373824007976255583, guid: 84c3356f275f93741adc81750fe69905,
+    type: 3}
+  _sniperPrefab: {fileID: 1567705272222926072, guid: d99db6698afff5746b8bcb0aa229439e,
+    type: 3}
   _frequentPowerups:
-  - {fileID: 1421154579356897521, guid: 6e6e9a93e9aa1f44aa18a14834f26098, type: 3}
+  - {fileID: 5820515810436792892, guid: df45dbd6c4f572d4ba8ef6abd024147e, type: 3}
   _regularPowerups:
   - {fileID: 7891624076070467504, guid: 5388bf1bd4bb8bc42a970bc373066b7f, type: 3}
   - {fileID: 4472473328040284996, guid: 777cd91fe407ecb41b250d5b3ed9c070, type: 3}
@@ -2089,6 +2095,7 @@ MonoBehaviour:
   - {fileID: 4959151107416442570, guid: 8b5902096d2bd034bb2e36ae37b34ec3, type: 3}
   _powerdowns:
   - {fileID: 2931781686224533078, guid: 65c8ee7d4b98a28429b5daccd2f69549, type: 3}
+  _stopSpawning: 0
 --- !u!4 &1794650277
 Transform:
   m_ObjectHideFlags: 0
@@ -2142,6 +2149,7 @@ MonoBehaviour:
   _thruster: 7
   _thrusterTimer: 15
   _fireRate: 0.15
+  _canFire: -1
   _lives: 3
   _shieldLives: 0
   _score: 0
@@ -2160,7 +2168,6 @@ MonoBehaviour:
   _rightDamage: {fileID: 580489227}
   _laserSoundClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _powerUpClip: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
-  _laserOffset: {x: 0, y: 0.8, z: 0}
   _isShieldActive: 0
   _isThrusterScaleActive: 0
 --- !u!212 &1882633412

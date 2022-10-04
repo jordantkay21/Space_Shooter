@@ -257,7 +257,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8548925013996137686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b284f01cf0a5e64db85a532abb6cef6, type: 3}
+  m_Script: {fileID: 11500000, guid: 00083a0ae77b468469abd51f287fe941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyLaserPrefab: {fileID: 1433169595499794866, guid: 7800faa45d0270546948bccff9750d10,

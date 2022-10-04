@@ -11,6 +11,7 @@ TagManager:
   - Behind_Laser
   - Enemy_Sniper
   - Sniper_Laser
+  - Powerup
   layers:
   - Default
   - TransparentFX

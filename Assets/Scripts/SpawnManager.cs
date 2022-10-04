@@ -16,6 +16,8 @@ public class SpawnManager : MonoBehaviour
     private GameObject _tankPrefab;
     [SerializeField]
     private GameObject _brutePrefab;
+    [SerializeField]
+    private GameObject _sniperPrefab;
 
     [Header("Collectables to Spawn")]
     [SerializeField]
@@ -72,14 +74,15 @@ public class SpawnManager : MonoBehaviour
     private void Wave1Spawn()
     {
         StartCoroutine(SpawnEnemyRoutine());
-        StartCoroutine(SpawnFrequentPowerUpRoutine());
+        StartCoroutine(SpawnFrequentPowerUpRoutine());        
+        StartCoroutine(SpawnRegularPowerUpRoutine());
     }
 
     private void Wave2Spawn()
     {
         Wave1Spawn();        
         StartCoroutine(SpawnTankRoutine());        
-        StartCoroutine(SpawnRegularPowerUpRoutine());
+
         StartCoroutine(SpawnRarePowerUpRoutine());
     }
 
@@ -93,6 +96,7 @@ public class SpawnManager : MonoBehaviour
     private void Wave4Spawn()
     {
         Wave3Spawn();
+        StartCoroutine(SpawnSniperRoutine());
     }
 
     private void Wave5Spawn()
@@ -123,6 +127,17 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    IEnumerator SpawnSniperRoutine()
+    {
+        yield return new WaitForSeconds(Random.Range(3.0f, 12.0f));
+        while (_stopSpawning == false)
+        {
+            Vector3 posToSpawn = new Vector3(Random.Range(-8, 8), 8, 0);
+            GameObject newEnemy = Instantiate(_sniperPrefab, posToSpawn, Quaternion.identity);
+            newEnemy.transform.parent = _enemyContainer.transform;
+            yield return new WaitForSeconds(Random.Range(5.0f, 10.0f));
+        }
+    }
     IEnumerator SpawnBruteRoutine()
     {
         yield return new WaitForSeconds(Random.Range(3.0f, 12.0f));

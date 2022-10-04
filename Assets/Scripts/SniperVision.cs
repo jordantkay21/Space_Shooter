@@ -2,27 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SniperView : MonoBehaviour
+public class SniperVision : MonoBehaviour
 {
+
     private EnemySniper _enemySniper;
+
+    // Start is called before the first frame update
     void Start()
     {
         _enemySniper = GameObject.Find("Enemy_Sniper").GetComponent<EnemySniper>();
 
-        if(_enemySniper == null)
+        if (_enemySniper == null)
         {
             Debug.LogError("Enemy Sniper is NULL.");
         }
     }
 
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy_Sniper")
+        if (other.tag == "Powerup")
         {
             _enemySniper.ShootPowerup();
         }
     }
-
-
 }
