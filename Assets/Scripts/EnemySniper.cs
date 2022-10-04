@@ -7,11 +7,13 @@ public class EnemySniper : MonoBehaviour
     private Vector3 _laserOffset = new Vector3(0, -1, 0);
 
     [SerializeField]
+    private int _enemyScore = 30;
+    [SerializeField]
     private float _waitBeforeMoving = 5.0f;
     [SerializeField]
     private GameObject _enemySniperLaserPrefab;
     [SerializeField]
-    private float _speed = 6.0f;
+    private float _speed = 12.0f;
     private float _fireRate = 2.0f;
     private float _canFire = -1;
 
@@ -23,6 +25,8 @@ public class EnemySniper : MonoBehaviour
     private bool _hasArrived = false;
     private bool _atLocation;
     private bool _hasFired = false;
+    private bool _dodgeRight = false;
+    private bool _dodgeLeft = false;
 
 
     private void Start()
@@ -49,13 +53,42 @@ public class EnemySniper : MonoBehaviour
 
     void Update()
     {
+        Dodge();
         CalculateMovement();
         FireLaser();
 
     }
 
+    public void SetDodgeRight()
+    {
+        _dodgeRight = true;
+    }
+
+    public void SetDodgeLeft()
+    {
+        _dodgeLeft = true;
+    }
+
+    private void Dodge()
+    {
+        _speed = 8f;
+        if (_dodgeRight == true)
+        {
+            transform.Translate(Vector3.right * _speed * Time.deltaTime);
+            _dodgeRight = false;
+        }
+        else if (_dodgeLeft == true)
+        {
+            transform.Translate(Vector3.left * _speed * Time.deltaTime);
+            _dodgeLeft = false;
+        }
+    }
+
+
     private void CalculateMovement()
     {
+        float xAxis = transform.position.x;
+
         if (_hasArrived == false)
         {
             float randX = Random.Range(-10, 10);
@@ -63,6 +96,15 @@ public class EnemySniper : MonoBehaviour
             StartCoroutine(MoveToPoint(new Vector3(randX, randY, 0)));
 
             _hasArrived = true;
+        }
+
+        if (xAxis > 10)
+        {
+            transform.position = new Vector3((xAxis * -1), 0, 0);
+        }
+        if (xAxis < -10)
+        {
+            transform.position = new Vector3((xAxis * -1), 0, 0);
         }
     }
 
@@ -120,7 +162,26 @@ public class EnemySniper : MonoBehaviour
         {
             if (_player != null)
             {
-                _player.AddScore(20);
+                _player.AddScore(_enemyScore);
+                _player.UpdateKillCount(1);
+            }
+
+            Destroy(other.gameObject);
+
+            _animator.SetTrigger("OnEnemyDeath");
+            _speed = 0;
+            _audioSource.Play();
+            _stopFire = true;
+            Destroy(GetComponent<Collider2D>());
+            Destroy(GetComponent<Rigidbody2D>());
+            Destroy(this.gameObject, 2.6f);
+        }
+
+        if (other.tag == "Laser")
+        {
+            if (_player != null)
+            {
+                _player.AddScore(_enemyScore + 10);
                 _player.UpdateKillCount(1);
             }
 

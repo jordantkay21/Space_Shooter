@@ -10,9 +10,26 @@ public class Laser : MonoBehaviour
     private bool _isEnemyLaser = false;
     private bool _isBehindShot = false;
 
+    private EnemySniper _enemySniper;
+    private Transform _enemySniperTransform;
+    private Vector3 _enemySniperPos;
+    private float _xAxis;
+    private float _enemySniperXAxis;
+
 
     private void Start()
     {
+        _enemySniper = GameObject.Find("Enemy_Sniper").GetComponent<EnemySniper>();
+        _enemySniperTransform = GameObject.Find("Enemy_Sniper").GetComponent<Transform>();
+
+        if (_enemySniper == null)
+        {
+            Debug.LogError("Enemy Sniper is NULL.");
+        }
+
+        _enemySniperPos = _enemySniperTransform.position;
+        _xAxis = gameObject.transform.position.x;
+        _enemySniperXAxis = _enemySniperPos.x;
 
     }
 
@@ -20,21 +37,34 @@ public class Laser : MonoBehaviour
     {
         if (_isEnemyLaser == false && _isBehindShot == false)
         {
-            PlayerShot();
+            PlayerShotMovement();
+            MoveSniper();
         }
         else if (_isEnemyLaser == true && _isBehindShot == false)
         {
-            EnemyShot();
+            EnemyShotMovement();  
         }
         else
         {
             BehindShot();
         }
-
-
     }
 
-    void PlayerShot()
+    void MoveSniper()
+    {
+        float distance = Vector3.Distance(transform.position, _enemySniperPos);
+
+        if(_xAxis < _enemySniperXAxis && distance < 2)
+        {
+            _enemySniper.SetDodgeRight();
+        } 
+        else if(_xAxis > _enemySniperXAxis && distance < 2)
+        {
+            _enemySniper.SetDodgeLeft();
+        }
+    }
+
+    void PlayerShotMovement()
     {
         transform.Translate(Vector3.up * _speed * Time.deltaTime);
 
@@ -64,7 +94,7 @@ public class Laser : MonoBehaviour
         }
     }
 
-    void EnemyShot()
+    void EnemyShotMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 

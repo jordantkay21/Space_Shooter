@@ -264,7 +264,7 @@ MonoBehaviour:
   _waitBeforeMoving: 5
   _enemySniperLaserPrefab: {fileID: 1567705272222926072, guid: d99db6698afff5746b8bcb0aa229439e,
     type: 3}
-  _speed: 6
+  _speed: 12
 --- !u!1 &7577053564591379382
 GameObject:
   m_ObjectHideFlags: 0

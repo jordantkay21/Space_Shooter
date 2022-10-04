@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     private GameObject _enemyLaserPrefab;
     [SerializeField]
     private float _speed = 4.0f;
+    [SerializeField]
+    private int _enemyScore = 10;
     private float _fireRate = 3.0f;
     private float _canFire = -1;
 
@@ -100,7 +102,7 @@ public class Enemy : MonoBehaviour
         {
             if (_player != null)
             {
-                _player.AddScore(10);
+                _player.AddScore(_enemyScore);
                 _player.UpdateKillCount(1);
             }
             
@@ -121,7 +123,8 @@ public class Enemy : MonoBehaviour
         {
             if (_player != null)
             {
-                _player.AddScore(10);
+                _player.AddScore(_enemyScore);
+                _player.UpdateKillCount(1);
             }
 
             Destroy(other.gameObject);

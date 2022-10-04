@@ -10,11 +10,13 @@ public class Missile : MonoBehaviour
 
 
     private Transform _enemy;
+    private Transform _enemySniper;
     
     // Start is called before the first frame update
     void Start()
     {
         _enemy = GameObject.FindWithTag("Enemy").GetComponent<Transform>();
+        _enemySniper = GameObject.FindWithTag("Enemy_Sniper").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -25,7 +27,24 @@ public class Missile : MonoBehaviour
 
     private void MoveTowardsEnemy()
     {
-        if (_enemy == null)
+
+        if (_enemySniper != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _enemySniper.position, Time.deltaTime * _speed);
+
+            Vector3 offset = transform.position + _enemySniper.position;
+
+            transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), offset);
+        }
+        else if (_enemy != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _enemy.position, Time.deltaTime * _speed);
+
+            Vector3 offset = transform.position + _enemy.position;
+
+            transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), offset);
+        }
+        else if (_enemy == null && _enemySniper == null)
         {
             transform.Translate(Vector3.up * _speed * Time.deltaTime);
 
@@ -33,14 +52,6 @@ public class Missile : MonoBehaviour
             {
                 Destroy(this.gameObject);
             }
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, _enemy.position, Time.deltaTime * _speed);
-
-            Vector3 offset = transform.position + _enemy.position;
-
-            transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), offset);
         }
     }
 }

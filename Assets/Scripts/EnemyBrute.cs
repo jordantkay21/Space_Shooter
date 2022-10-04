@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyBrute : MonoBehaviour
 {
 
-
+    [SerializeField]
+    private int _enemyScore = 20;
     [SerializeField]
     private float _speed = 4.0f;
     private float _fireRate = 3.0f;
@@ -180,20 +181,19 @@ public class EnemyBrute : MonoBehaviour
 
             if (_isShieldActive == true)
             {
-                if (player != null)
-                {
-                    player.Damage();
-                }
                 _isShieldActive = false;
                 _shieldVisualizer.SetActive(false);
                 StartCoroutine(PassThroughEffectActive());
             }
             else
             {
-                if (player != null)
+                if (_player != null)
                 {
-                    player.Damage();
+                    _player.AddScore(_enemyScore);
+                    _player.UpdateKillCount(1);
                 }
+
+                Destroy(other.gameObject);
 
                 _animator.SetTrigger("OnEnemyDeath");
                 _speed = 0;
@@ -211,20 +211,19 @@ public class EnemyBrute : MonoBehaviour
 
             if (_isShieldActive == true)
             {
-                if (player != null)
-                {
-                    player.Damage();
-                }
                 _isShieldActive = false;
                 _shieldVisualizer.SetActive(false);
                 StartCoroutine(PassThroughEffectActive());
             }
             else
             {
-                if (player != null)
+                if (_player != null)
                 {
-                    player.Damage();
+                    _player.AddScore(_enemyScore);
+                    _player.UpdateKillCount(1);
                 }
+
+                Destroy(other.gameObject);
 
                 _animator.SetTrigger("OnEnemyDeath");
                 _speed = 0;
@@ -233,6 +232,8 @@ public class EnemyBrute : MonoBehaviour
                 Destroy(GetComponent<Collider2D>());
                 Destroy(GetComponent<Rigidbody2D>());
                 Destroy(this.gameObject, 2.6f);
+
+
             }
 
 
