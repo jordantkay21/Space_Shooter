@@ -54,11 +54,11 @@ public class Laser : MonoBehaviour
     {
         float distance = Vector3.Distance(transform.position, _enemySniperPos);
 
-        if(_xAxis < _enemySniperXAxis && distance < 2)
+        if(_xAxis < _enemySniperXAxis && distance < 3)
         {
             _enemySniper.SetDodgeRight();
         } 
-        else if(_xAxis > _enemySniperXAxis && distance < 2)
+        else if(_xAxis > _enemySniperXAxis && distance < 3)
         {
             _enemySniper.SetDodgeLeft();
         }

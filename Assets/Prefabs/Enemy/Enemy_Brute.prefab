@@ -435,6 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f55cedf47722ad44a93b834636f8279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyScore: 30
   _speed: 4
   _shieldVisualizer: {fileID: 3896232870243512395}
   _renderer: {fileID: 5210234277711675818}

@@ -10,7 +10,7 @@ public class SniperVision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _enemySniper = GameObject.Find("Enemy_Sniper").GetComponent<EnemySniper>();
+        _enemySniper = GetComponentInParent<EnemySniper>();
 
         if (_enemySniper == null)
         {

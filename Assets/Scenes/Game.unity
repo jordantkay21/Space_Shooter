@@ -743,7 +743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &369459913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1054,7 +1054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &862208953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1347,7 +1347,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 54, y: 9.200012}
+  m_AnchoredPosition: {x: 54, y: 20}
   m_SizeDelta: {x: 97.277374, y: 18.239502}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1296533210
@@ -1367,7 +1367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1296533211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2147,7 +2147,6 @@ MonoBehaviour:
   _canFire: -1
   _lives: 3
   _shieldLives: 0
-  _score: 0
   _laserAmmoCount: 15
   _missileAmmoCount: 0
   _enemiesKilled: 0

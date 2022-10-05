@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _shieldLives = 0;
     [SerializeField]
-    private int _score;
+    private static int _score;
     [SerializeField]
     private int _laserAmmoCount = 15;
     [SerializeField]

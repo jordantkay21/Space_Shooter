@@ -8,7 +8,7 @@ public class PlayerDetection : MonoBehaviour
 
     private void Start()
     {
-        _enemyBrute = GameObject.Find("Enemy_Brute").GetComponent<EnemyBrute>();
+        _enemyBrute = GetComponentInParent<EnemyBrute>();
 
         if (_enemyBrute == null)
         {
