@@ -8,30 +8,38 @@ public class UIManager : MonoBehaviour
     //Display Wave Level
     private int _waveLevel;
     
-    //Display Enemy Kill Count
+    [Header("Display Enemy Kill Count")]
     [SerializeField]
     private int _enemiesKilled;
     [SerializeField]
     private int _waveAmmount;
 
 
-    //LIVES UI
+    [Header("LIVES UI")]
     [SerializeField]
     private Image _livesImg;
     [SerializeField]
     private Sprite[] _livesSprites; //0=0 lives | 1=1 lives | 2=2 lives | 3=3 lives
-    
-    //THRUSTER UI
+
+    [Header("Boss Health UI")]
+    [SerializeField]
+    private Image _bossHealthBarImg;
+    [SerializeField]
+    private Sprite[] _bossHealthSprites; //0=0% | 1=5% | 2=10% | 3=15% | 4=20% | 5=25% | 6=30% | 7=35% | 8=40% | 9=45% | 10=50% | 11=55% | 12=60% | 13=65% | 14=70% | 15=75% | 16=80% | 17=85% | 18=90% | 19=95% | 20=100%
+
+    [Header("THRUSTER UI")]
     [SerializeField]
     private Image _thrusterImg;
     [SerializeField]
     private Sprite[] _thrusterSprites; //0=empty | 1=1 second left | 2=2 seconds left | 3=3 seconds left | 4=4 seconds left | 5=5 seconds left | 6=6 seconds left | 7=7 seconds left | 8=8 seconds left | 9=9 seconds left | 10=10 seconds left | 11=11 seconds left | 12=12 seconds left | 13=13 seconds left | 14=14 seconds left | 15=Full 
     
-    //TEXTS
+    [Header("Texts")]
     [SerializeField]
     private Text _scoreText;
     [SerializeField]
     private Text _gameOverText;
+    [SerializeField]
+    private Text _youWinText;
     [SerializeField]
     private Text _restartText;
     [SerializeField]
@@ -58,7 +66,6 @@ public class UIManager : MonoBehaviour
     {
 
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
-
         if (_gameManager == null)
         {
             Debug.LogError("Game Manager is NULL.");
@@ -70,6 +77,7 @@ public class UIManager : MonoBehaviour
         
         _gameOverText.gameObject.SetActive(false);
         _restartText.gameObject.SetActive(false);
+        _youWinText.gameObject.SetActive(false);
     }
 
     public void Update()
@@ -101,6 +109,11 @@ public class UIManager : MonoBehaviour
         _livesImg.sprite = _livesSprites[currentLives];
     }
 
+    public void UpdateBossHealth(int currentPercentage)
+    {
+        _bossHealthBarImg.sprite = _bossHealthSprites[currentPercentage];
+    }
+
     public void UpdateThrusterScale(int currentSecondsLeft)
     {
         _thrusterImg.sprite = _thrusterSprites[currentSecondsLeft];
@@ -111,6 +124,14 @@ public class UIManager : MonoBehaviour
         _gameManager.GameOver();
         _restartText.gameObject.SetActive(true);
         StartCoroutine(GameOverRoutine());
+    }
+
+    public void YouWinSequence()
+    {
+        _gameManager.GameOver();
+        _restartText.gameObject.SetActive(true);
+        StartCoroutine(YouWinRoutine());
+
     }
 
     public void UpdateAmmoCount(int currentAmmo)
@@ -125,6 +146,19 @@ public class UIManager : MonoBehaviour
             _gameOverText.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
             _gameOverText.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    IEnumerator YouWinRoutine()
+    {
+        while (true)
+        {
+            _gameOverText.gameObject.SetActive(true);
+            _youWinText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _gameOverText.gameObject.SetActive(false);
+            _youWinText.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.5f);
         }
     }

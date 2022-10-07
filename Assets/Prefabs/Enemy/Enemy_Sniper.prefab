@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1813221781
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3154912113cbb4a498df6f571c74e18c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 648fcc911199d694b9e8ae16efcb6f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyScore: 30
   _waitBeforeMoving: 5
   _enemySniperLaserPrefab: {fileID: 1567705272222926072, guid: d99db6698afff5746b8bcb0aa229439e,
     type: 3}

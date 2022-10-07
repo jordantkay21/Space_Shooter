@@ -40,8 +40,6 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Enemy Audio Source is NULL.");
         }
-
-
     }
 
     void Update()

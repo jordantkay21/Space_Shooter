@@ -7,11 +7,11 @@ public class Missile : MonoBehaviour
     [SerializeField]
     private float _speed = 6;
 
-
-
+    [SerializeField]
+    private GameObject _explosionPrefab;
     private Transform _enemy;
     private Transform _enemySniper;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +52,16 @@ public class Missile : MonoBehaviour
             {
                 Destroy(this.gameObject);
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Mothership")
+        {
+            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+            this.gameObject.SetActive(false);
+            Destroy(this.gameObject, 0.25f);
         }
     }
 }

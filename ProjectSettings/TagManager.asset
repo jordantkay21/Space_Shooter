@@ -12,6 +12,7 @@ TagManager:
   - Enemy_Sniper
   - Sniper_Laser
   - Powerup
+  - Mothership
   layers:
   - Default
   - TransparentFX
@@ -51,6 +52,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 1018643195
+    locked: 0
+  - name: Lasers
+    uniqueID: 3407274735
     locked: 0
   - name: Foreground
     uniqueID: 2481745515

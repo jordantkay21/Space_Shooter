@@ -101,7 +101,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Wave5Spawn()
     {
-        //Boss Wave
+        StartCoroutine(SpawnSniperRoutine());
     }
     IEnumerator SpawnEnemyRoutine()
     {
