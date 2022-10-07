@@ -12,6 +12,7 @@ public class SniperVision : MonoBehaviour
     {
         _enemySniper = GetComponentInParent<EnemySniper>();
 
+
         if (_enemySniper == null)
         {
             Debug.LogError("Enemy Sniper is NULL.");

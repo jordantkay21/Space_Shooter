@@ -10,6 +10,7 @@ public class Asteroid : MonoBehaviour
     private GameObject _explosionPrefab;
     private SpawnManager _spawnManager;
     private UIManager _uiManager;
+    private GameManager _gameManager;
 
     
     // Start is called before the first frame update
@@ -17,17 +18,21 @@ public class Asteroid : MonoBehaviour
     {
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
 
         if (_spawnManager == null)
         {
             Debug.LogError("Spawn Manager is Null");
         }
-
         if (_uiManager == null)
         {
             Debug.LogError("UIManager is NULL");
         }
-        
+        if (_gameManager == null)
+        {
+            Debug.LogError("Game_Manager is NULL.");
+        }
+
     }
 
     // Update is called once per frame
@@ -45,7 +50,6 @@ public class Asteroid : MonoBehaviour
             Destroy(this.gameObject, 0.25f);
             _spawnManager.StartSpawning();
             _uiManager.TurnOffWaveText();
-            
         }
 
     }

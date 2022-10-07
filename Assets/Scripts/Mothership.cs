@@ -6,10 +6,11 @@ public class Mothership : MonoBehaviour
 {
     [Header("Holds a Value")]
     [SerializeField]
-    private float _speed = 4.0f;
+    private float _speed;
     [SerializeField]
     private float _health = 100;
 
+    private Vector3 _targetPos = new Vector3 (.3f, 8, 0);
 
     private Player _player;
     private Transform _playerTransform;
@@ -18,6 +19,9 @@ public class Mothership : MonoBehaviour
     private UIManager _uiManager;
     private TankLauncher _tankLauncher;
     private SniperLauncher _sniperLauncher;
+
+    [SerializeField]
+    private bool _atGamePos = false;
 
 
 
@@ -64,7 +68,27 @@ public class Mothership : MonoBehaviour
         HealthCheck();
     }
 
+    public void FirstMove()
+    {
+        StartCoroutine(StartMovementRoutine());
+    }
 
+    IEnumerator StartMovementRoutine()
+    {
+        yield return new WaitForEndOfFrame();
+        while (_atGamePos == false)
+        {
+            Vector3 startPos = transform.position;
+            yield return new WaitForEndOfFrame();
+            transform.position = Vector3.MoveTowards(startPos, _targetPos, _speed * Time.deltaTime);
+
+            if (Vector3.Distance(startPos, _targetPos) == 0)
+            {
+                _atGamePos = true;
+                _laserGun.StartShooting();
+            }
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

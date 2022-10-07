@@ -21,12 +21,15 @@ public class LaserGun : MonoBehaviour
 
 
     private Transform _playerTransform;
+    private SpawnManager _spawnManager;
+    private UIManager _uiManager;
 
     private float _playerXAxis; 
     private Vector3 _startPos; 
     private Vector3 _targetPos;
 
-    private bool _letItRain;
+    private bool _hasshotonce = false;
+
 
 
 
@@ -34,10 +37,17 @@ public class LaserGun : MonoBehaviour
     void Start()
     {
         _playerTransform = GameObject.Find("Player").GetComponent<Transform>();
-        
-        if (_playerTransform == null)
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
+        if (_spawnManager == null)
         {
-            Debug.LogError("Player is NULL.");
+            Debug.LogError("Spawn Manager is Null");
+        }
+
+        if (_uiManager == null)
+        {
+            Debug.LogError("UIManager is NULL");
         }
 
     }
@@ -111,6 +121,8 @@ private void CalculateXAxis()
                 Laser redLaser = redSniperLaser.GetComponent<Laser>();
                 redLaser.AssignEnemyLaser();
             }
+
+            _hasshotonce = true;
         }
 
         if(_gunTemp < 0)

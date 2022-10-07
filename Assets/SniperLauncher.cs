@@ -28,10 +28,10 @@ public class SniperLauncher : MonoBehaviour
     }
     IEnumerator SpawnSniperRoutine()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForEndOfFrame();
         while (_fireSniper == true)
         {
-            yield return new WaitForSeconds(Random.Range(5.0f, 10.0f));
+            yield return new WaitForSeconds(Random.Range(4.0f, 10.0f));
             Vector3 posToSpawn = transform.position;
             GameObject newEnemy = Instantiate(_sniperPrefab, posToSpawn, Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;

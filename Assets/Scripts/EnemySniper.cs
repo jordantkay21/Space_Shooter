@@ -21,6 +21,12 @@ public class EnemySniper : MonoBehaviour
     private Animator _animator;
     private AudioSource _audioSource;
 
+    private GameObject _laser;
+    private Laser _laserScript;
+    private Transform _laserTransform;
+    private Vector3 _laserPos;
+    private float _laserXAxis;
+
     private bool _stopFire = false;
     private bool _hasArrived = false;
     private bool _atLocation;
@@ -31,6 +37,8 @@ public class EnemySniper : MonoBehaviour
 
     private void Start()
     {
+        
+
         _player = GameObject.Find("Player").GetComponent<Player>();
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
@@ -53,21 +61,41 @@ public class EnemySniper : MonoBehaviour
 
     void Update()
     {
+        _laser = GameObject.FindGameObjectWithTag("Laser");
+        if (_laser != null)
+        {
+            _laserScript = GameObject.FindGameObjectWithTag("Laser").GetComponent<Laser>();
+            _laserTransform = GameObject.FindGameObjectWithTag("Laser").GetComponent<Transform>();
+
+            _laserPos = _laserTransform.position;
+            _laserXAxis = _laserPos.x;
+
+            Debug.Log(_laserPos.x);
+        }
+
         Dodge();
         CalculateMovement();
         FireLaser();
+        CheckLaserPosition();
 
     }
 
-    public void SetDodgeRight()
+
+    void CheckLaserPosition()
     {
-        _dodgeRight = true;
+        float xAxis = transform.position.x;
+        float distance = Vector3.Distance(transform.position, _laserPos);
+
+        if(xAxis > _laserXAxis && distance < 3)
+        {
+            _dodgeRight = true;
+        }
+        else if(xAxis < _laserXAxis && distance < 3)
+        {
+            _dodgeLeft = true;
+        }
     }
 
-    public void SetDodgeLeft()
-    {
-        _dodgeLeft = true;
-    }
 
     private void Dodge()
     {

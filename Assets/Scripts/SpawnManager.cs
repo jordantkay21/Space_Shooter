@@ -30,6 +30,8 @@ public class SpawnManager : MonoBehaviour
     private GameObject[] _powerdowns;
 
     private GameManager _gameManager;
+    private GameObject _mothership;
+    private Mothership _mothershipScript;
 
     [SerializeField]
     private bool _stopSpawning = false;
@@ -37,6 +39,12 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
+        _mothership = GameObject.Find("Mothership");
+        if(_mothership != null)
+        {
+            _mothershipScript = GameObject.Find("Mothership").GetComponent<Mothership>();
+        }
+
 
         if (_gameManager == null)
         {
@@ -101,7 +109,10 @@ public class SpawnManager : MonoBehaviour
 
     private void Wave5Spawn()
     {
-        StartCoroutine(SpawnSniperRoutine());
+        StartCoroutine(SpawnFrequentPowerUpRoutine());
+        StartCoroutine(SpawnRegularPowerUpRoutine());
+        StartCoroutine(SpawnRarePowerUpRoutine());
+        _mothershipScript.FirstMove();
     }
     IEnumerator SpawnEnemyRoutine()
     {
