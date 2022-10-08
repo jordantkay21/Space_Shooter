@@ -2405,8 +2405,10 @@ MonoBehaviour:
     type: 3}
   _tankPrefab: {fileID: 8548925013996137686, guid: 5a9482d6d0edb364a82ab214c41bfdc2,
     type: 3}
-  _brutePrefab: {fileID: 0}
-  _sniperPrefab: {fileID: 0}
+  _brutePrefab: {fileID: 7373824007976255583, guid: 84c3356f275f93741adc81750fe69905,
+    type: 3}
+  _sniperPrefab: {fileID: 2433853222203064426, guid: 6321ef17db32d314f80f8b876da26ed6,
+    type: 3}
   _frequentPowerups:
   - {fileID: 5820515810436792892, guid: df45dbd6c4f572d4ba8ef6abd024147e, type: 3}
   _regularPowerups:
@@ -2416,6 +2418,7 @@ MonoBehaviour:
   _rarePowerups:
   - {fileID: 4959151107416442570, guid: 8b5902096d2bd034bb2e36ae37b34ec3, type: 3}
   - {fileID: 4713905772035196240, guid: 9463f152c041dda4a8fd95cc525a73e6, type: 3}
+  - {fileID: 4959151107416442570, guid: 8b5902096d2bd034bb2e36ae37b34ec3, type: 3}
   _powerdowns: []
   _stopSpawning: 0
 --- !u!4 &1794650277
@@ -2476,7 +2479,7 @@ MonoBehaviour:
   _shieldLives: 0
   _laserAmmoCount: 15
   _missileAmmoCount: 0
-  _enemiesKilled: 0
+  _enemiesKilled: 12
   _waveAmmount: 0
   _laserPrefab: {fileID: 4014754733054454641, guid: 23088448eeab90a4780c371ec1488743,
     type: 3}
@@ -2842,7 +2845,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7aac4f9bff6dfc4bbe8858783225c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveScore: 0
 --- !u!4 &1979765966
 Transform:
   m_ObjectHideFlags: 0

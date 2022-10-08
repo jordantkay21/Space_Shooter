@@ -14,12 +14,13 @@ public class TankLauncher : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnTankRoutine());
+        
     }
 
     public void SetFireTank()
     {
         _fireTank = true;
+        StartCoroutine(SpawnTankRoutine());
     }
 
     public void FireTankFalse()

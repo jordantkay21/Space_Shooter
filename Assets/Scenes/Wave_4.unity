@@ -2105,75 +2105,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1001 &1774227539
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2433853222203064426, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy_Sniper
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6440444803248486913, guid: 6321ef17db32d314f80f8b876da26ed6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6321ef17db32d314f80f8b876da26ed6, type: 3}
 --- !u!1 &1788592002
 GameObject:
   m_ObjectHideFlags: 0
@@ -2467,7 +2398,7 @@ MonoBehaviour:
   _shieldLives: 0
   _laserAmmoCount: 15
   _missileAmmoCount: 0
-  _enemiesKilled: 0
+  _enemiesKilled: 20
   _waveAmmount: 0
   _laserPrefab: {fileID: 4014754733054454641, guid: 23088448eeab90a4780c371ec1488743,
     type: 3}

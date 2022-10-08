@@ -14,12 +14,13 @@ public class SniperLauncher : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnSniperRoutine());
+
     }
 
     public void SetFireSniper()
     {
-        _fireSniper = true;
+        _fireSniper = true;        
+        StartCoroutine(SpawnSniperRoutine());
     }
 
     public void FireTankFalse()

@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour
         }
         
         _scoreText.text = "Score: " + 0;
-        _ammoCountText.text = "Ammo: 15/15";
+        _ammoCountText.text = "Ammo: 15";
         _missileCountText.text = "Missile: 0/3";
         
         _gameOverText.gameObject.SetActive(false);
@@ -136,7 +136,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateAmmoCount(int currentAmmo)
     {
-        _ammoCountText.text = "Ammo: " + currentAmmo + "/15";
+        _ammoCountText.text = "Ammo: " + currentAmmo;
     }
 
     IEnumerator GameOverRoutine()

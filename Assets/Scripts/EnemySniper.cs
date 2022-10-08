@@ -69,8 +69,6 @@ public class EnemySniper : MonoBehaviour
 
             _laserPos = _laserTransform.position;
             _laserXAxis = _laserPos.x;
-
-            Debug.Log(_laserPos.x);
         }
 
         Dodge();

@@ -65,7 +65,7 @@ public class Mothership : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HealthCheck();
+
     }
 
     public void FirstMove()
@@ -97,6 +97,7 @@ public class Mothership : MonoBehaviour
             Destroy(other.gameObject);
             _health -= 1;
             _laserGun.StartShooting();
+            HealthCheck();
 
         }
 
@@ -104,6 +105,7 @@ public class Mothership : MonoBehaviour
         {
             Destroy(other.gameObject);
             _health -= 5;
+            HealthCheck();
 
         }
     }

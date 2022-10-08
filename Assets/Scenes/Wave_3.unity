@@ -998,7 +998,7 @@ SpriteRenderer:
   m_SortingLayerID: -1813221781
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0c8fdf5cda1379d4eab52132eb92757b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 349cd9b8eab59364492ae2322496178b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1006,7 +1006,7 @@ SpriteRenderer:
   m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &830073054
@@ -2255,6 +2255,8 @@ MonoBehaviour:
   - {fileID: 4713905772035196240, guid: 9463f152c041dda4a8fd95cc525a73e6, type: 3}
   _rarePowerups:
   - {fileID: 4959151107416442570, guid: 8b5902096d2bd034bb2e36ae37b34ec3, type: 3}
+  - {fileID: 4713905772035196240, guid: 9463f152c041dda4a8fd95cc525a73e6, type: 3}
+  - {fileID: 4959151107416442570, guid: 8b5902096d2bd034bb2e36ae37b34ec3, type: 3}
   _powerdowns:
   - {fileID: 2931781686224533078, guid: 65c8ee7d4b98a28429b5daccd2f69549, type: 3}
   _stopSpawning: 0
@@ -2316,7 +2318,7 @@ MonoBehaviour:
   _shieldLives: 0
   _laserAmmoCount: 15
   _missileAmmoCount: 0
-  _enemiesKilled: 0
+  _enemiesKilled: 15
   _waveAmmount: 0
   _laserPrefab: {fileID: 4014754733054454641, guid: 23088448eeab90a4780c371ec1488743,
     type: 3}
@@ -2859,7 +2861,7 @@ SpriteRenderer:
   m_SortingLayerID: -1813221781
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a87de2e6f32345a4b8645f85f1636802, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a45d14d91ce46f4e9b0239679592f42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2867,7 +2869,7 @@ SpriteRenderer:
   m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5601371916257163891
