@@ -2318,7 +2318,7 @@ MonoBehaviour:
   _shieldLives: 0
   _laserAmmoCount: 15
   _missileAmmoCount: 0
-  _enemiesKilled: 15
+  _enemiesKilled: 0
   _waveAmmount: 0
   _laserPrefab: {fileID: 4014754733054454641, guid: 23088448eeab90a4780c371ec1488743,
     type: 3}
